@@ -39,28 +39,22 @@ class CookRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Cook[] Returns an array of Cook objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
+    /**
+     * @return Cook[] Returns an array of Cook objects
+     */
+    public function findTopByDishes(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id', 'c.name')
+//            ->addSelect('COUNT(c.id) AS ')
 //            ->andWhere('c.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
+//            ->leftJoin('dish', 'd', 'd.cookId = c.id')
+//            ->orderBy('d.dish', 'ASC')
 //            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-//    public function findOneBySomeField($value): ?Cook
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
